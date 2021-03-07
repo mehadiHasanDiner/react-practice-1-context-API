@@ -3,18 +3,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home/Home';
 import Shipment from './components/Shipment/Shipment';
 import Header from './components/Header/Header';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
+
+export const CategoryContext = createContext();
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [category, setCategory] = useState('laptop');
 
   return (
-    <div>
-      <p>Count Value: {count}</p>
-      <Header count = {count} setCount ={setCount}></Header>
-      <Home count ={count}></Home>
+    <CategoryContext.Provider value ={[category, setCategory]} className ="container">
+      <p>Count Value: {category}</p>
+      <Header></Header>
+      <Home></Home>
       <Shipment></Shipment>
-    </div>
+    </CategoryContext.Provider>
   );
 }
 
